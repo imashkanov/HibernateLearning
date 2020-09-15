@@ -1,0 +1,7 @@
+CREATE SCHEMA IF NOT EXISTS HibernateTestDB;
+USE HibernateTestDB;
+
+CREATE TABLE Message (
+  id INT(11) PRIMARY KEY,
+  text VARCHAR(255));
+  
