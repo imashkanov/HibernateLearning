@@ -47,5 +47,28 @@
     </dependency>
   </dependencies>
 </project>
+
+--------------------------------------------------------------------------------------------------------------------------
+Достаточный для работы hibernate.cfg.xml
+
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+  "-//Hibernate/Hibernate Configuration DTD//EN"
+  "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC</property>
+    <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+    <property name="connection.username">root</property>
+    <property name="connection.password">root</property>
+    <property name="show_sql">true</property>
+
+    <mapping class="org.jpwh.model.helloworld.Message"/>
+
+    <!-- DB schema will be updated if needed -->
+  </session-factory>
+</hibernate-configuration>
+
 --------------------------------------------------------------------------------------------------------------------------
 Каждое взаимодействие с базой должно быть внутри явно заданной открытой транзакции
