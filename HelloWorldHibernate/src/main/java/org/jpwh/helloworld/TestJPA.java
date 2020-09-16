@@ -16,15 +16,17 @@ public class TestJPA {
     createMessages(em);
     List<Message> messages = getCreatedMesages(em);
     System.out.printf("Messages: %s\n", messages);
-    updateMessage(em, messages.get(0));
+    updateMessage(em, messages.get(0), "Changed text 1");
     System.out.printf("Updated first element. Messages after update: %s\n", messages);
+    updateMessage(em, messages.get(1), "Changed text 2");
+    System.out.printf("Updated second element. Messages after update: %s\n", messages);
     em.close();
   }
 
-  private static void updateMessage(EntityManager em, Message message) {
+  private static void updateMessage(EntityManager em, Message message, String newText) {
     EntityTransaction transaction = em.getTransaction();
     transaction.begin();
-    message.setText("Changed testMessage");
+    message.setText(newText);
     transaction.commit();
   }
 
