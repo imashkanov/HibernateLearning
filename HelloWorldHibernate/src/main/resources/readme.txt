@@ -47,6 +47,18 @@
   </dependencies>
 </project>
 
+Для подключения javax.beanvalidation - подключить
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>5.2.1.Final</version>
+    </dependency>
+    <dependency>
+      <groupId>javax.el</groupId>
+      <artifactId>javax.el-api</artifactId>
+      <version>2.2.4</version>
+    </dependency>
+
 --------------------------------------------------------------------------------------------------------------------------
 Достаточный для работы hibernate.cfg.xml
 
