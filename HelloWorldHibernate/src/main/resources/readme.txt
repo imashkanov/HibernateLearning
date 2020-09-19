@@ -90,3 +90,4 @@
 Hibernate может использовать только конструктор без параметров или по умолчанию
 Hibernate во время запуска читает классы и метаданные с помощью рефлексии
 Hibernate-аннотации лучше писать с полным пакетным путём без import (@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE))
+EntityManager - это из JPA, Session это из Hibernate

@@ -1,7 +1,5 @@
 package org.jpwh.model.simple;
 
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +10,6 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
-//@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class Item {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,11 +17,11 @@ public class Item {
 
   @NotNull
   @Size(
-    min = 2,
+    min = 5,
     max = 255,
     message = "Name is required, max 255 chars"
   )
-  protected String name;
+  private String name;
 
   private Date auctionEnd;
 
