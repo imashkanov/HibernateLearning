@@ -11,7 +11,7 @@
     <class>...</class>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/> -- обязательно этот драйвер
-      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://...?serverTimezone=UTC&amp;useSSL=false"/> -- обязательно serverTimezone указать и useSSL == false
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://...?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/> -- обязательно serverTimezone указать и useSSL == false, allowPublicKey... должен быть при получении метамодели
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <property name="javax.persistence.jdbc.user" value="..."/>
       <property name="javax.persistence.jdbc.password" value="..."/>
@@ -69,7 +69,7 @@
 <hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <property name="connection.url">jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false</property>
+    <property name="connection.url">jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true</property>
     <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
     <property name="connection.username">root</property>
     <property name="connection.password">root</property>

@@ -1,16 +1,21 @@
 import org.jpwh.model.helloworld.Message;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.FixMethodOrder;
-import org.junit.Test;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.metamodel.ManagedType;
+import javax.persistence.metamodel.Metamodel;
+import javax.persistence.metamodel.SingularAttribute;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EntityManagerTest {
@@ -78,6 +83,18 @@ public class EntityManagerTest {
     System.out.printf("Messages have been deleted. Count of messages=: %d\n", getCurrentMessages().size());
   }
 
+  @Test
+  public void m06_dynamicMetaModelTest() {
+    Metamodel metaModel = entityManagerFactory.getMetamodel();
+    Set<ManagedType<?>> managedTypes = metaModel.getManagedTypes();
+    for (ManagedType managedType: managedTypes) {
+      System.out.printf("Managed type: class = [%s],  type = [%s]\n", managedType.getJavaType().getName(), managedType.getPersistenceType());
+      if (managedType.getJavaType().getName().equals("org.jpwh.model.simple.Item")) {
+        processItemAttributesCheckingDyn(managedType);
+      }
+    }
+  }
+
   private List<Message> createMessages(int count) {
     List<Message> result = new ArrayList<>();
     for (int i=0; i<count; i++) {
@@ -90,5 +107,16 @@ public class EntityManagerTest {
 
   private List<Message> getCurrentMessages() {
     return (List<Message>) entityManager.createQuery("select m from Message m").getResultList();
+  }
+
+  private void processItemAttributesCheckingDyn(ManagedType itemType) {
+    SingularAttribute nameAttr = itemType.getSingularAttribute("name");
+    assertEquals(String.class, nameAttr.getJavaType());
+    assertFalse(nameAttr.isOptional());
+
+    SingularAttribute auctionEndAttr = itemType.getSingularAttribute("auctionEnd");
+    assertEquals(Date.class, auctionEndAttr.getJavaType());
+    assertFalse(auctionEndAttr.isCollection());
+    assertFalse(auctionEndAttr.isId());
   }
 }
