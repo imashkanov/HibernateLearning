@@ -8,7 +8,7 @@ import javax.persistence.Id;
 @Entity // каждый класс хранимой сущности должен иметь хотя бы одну Entity
 public class Message {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO) //значение будет генерироваться автоматически
+  @GeneratedValue(strategy = GenerationType.IDENTITY) //значение будет генерироваться автоматически
   private Long id; //идентификационный аттрибут, должен быть обязательно
 
   private String text;

@@ -112,7 +112,6 @@ public class EntityManagerTest {
   private void processItemAttributesCheckingDyn(ManagedType itemType) {
     SingularAttribute nameAttr = itemType.getSingularAttribute("name");
     assertEquals(String.class, nameAttr.getJavaType());
-    assertFalse(nameAttr.isOptional());
 
     SingularAttribute auctionEndAttr = itemType.getSingularAttribute("auctionEnd");
     assertEquals(Date.class, auctionEndAttr.getJavaType());
