@@ -1,5 +1,8 @@
 import org.jpwh.model.helloworld.Message;
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
+import org.junit.FixMethodOrder;
+import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
 import javax.persistence.EntityManager;
@@ -51,15 +54,24 @@ public class EntityManagerTest {
   }
 
   @Test
+  public void m03_getRandomMessage() {
+	  long anyMessageID = getCurrentMessages().stream().mapToLong(Message::getId).findAny().orElse(0L);
+	  if (anyMessageID != 0L) {
+		  Message message = entityManager.find(Message.class, anyMessageID);
+		  System.out.printf("Found random message: %s\n", message);
+	  }
+  }
+
+  @Test
   public void m03_updateMessages() {
     List<Message> messages = getCurrentMessages();
     EntityTransaction transaction = entityManager.getTransaction();
     transaction.begin();
     for (int i=0; i< messages.size(); i++) {
       if ((i+1) % 2 == 0) {
-        messages.get(i).setText("It's even. Changed by EM message #" + String.valueOf(i+1));
+        messages.get(i).setText("It's even. Changed by EM message #" + (i + 1));
       } else {
-        messages.get(i).setText("It's odd. Changed by EM message #" + String.valueOf(i+1));
+        messages.get(i).setText("It's odd. Changed by EM message #" + (i + 1));
       }
     }
     transaction.commit();

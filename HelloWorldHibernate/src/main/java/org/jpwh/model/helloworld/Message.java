@@ -11,6 +11,10 @@ public class Message {
   @GeneratedValue(strategy = GenerationType.IDENTITY) //значение будет генерироваться автоматически
   private Long id; //идентификационный аттрибут, должен быть обязательно
 
+  public Long getId() {
+    return id;
+  }
+
   private String text;
 
   public String getText() {
