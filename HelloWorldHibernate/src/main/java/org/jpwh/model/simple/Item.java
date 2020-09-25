@@ -19,6 +19,8 @@ public class Item {
     max = 255,
     message = "Name is required, max 255 chars"
   )
+  @Access(AccessType.PROPERTY)
+  @Column(name = "name")
   private String name;
 
 //  @Column(name = "START_PRICE", nullable = false)

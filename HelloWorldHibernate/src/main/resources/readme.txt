@@ -99,3 +99,7 @@ EntityManager - это из JPA, Session это из Hibernate
 @Transient - поле, которое не будет хранимым и не будет сохраняться в БД
 @Basic(optional = false): optional = false - поле необязательное
 @Column(name = "START_PRICE", nullable = false) - тот же самый Basic, но используют её. Name - переопределение имени столбца
+@Formula - для вычисляемого поля
+@ColumnTranformer - допустим в БД значение в фунтах, а надо читать и записывать в метрах => (read "COLUMN_SRC" / 2.20462 write (? * 2.20462)) - вычисление выполняется на уровне БД
+Для автогенерации значения - @Generated(тут указывается GenerationTime: Always - генерация при каждом INSERT и UPDATE, Insrert - понятно) + @Column(insertable = false, updatable = false)
+Можно задать значение по умолчанию @ColumnDefault
