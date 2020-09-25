@@ -95,3 +95,7 @@ EntityManager - это из JPA, Session это из Hibernate
 @Immutable - неизменяемая сущность (экземпляры никогда не обновляются)
 Не выполняется синхронизация перед entityManager.find, только перед выполнением запроса Query
 @Subselect обязательно нужно потом сделать @Synchronize
+@Embedded - для конкретного поля и @Embeddable для класса (ВСТАРИВАЕМЫЙ) - встроенный компонент класса-владельца (пользовательский тип)
+@Transient - поле, которое не будет хранимым и не будет сохраняться в БД
+@Basic(optional = false): optional = false - поле необязательное
+@Column(name = "START_PRICE", nullable = false) - тот же самый Basic, но используют её. Name - переопределение имени столбца
