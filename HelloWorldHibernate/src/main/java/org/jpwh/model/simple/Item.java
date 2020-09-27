@@ -28,6 +28,11 @@ public class Item {
 
   private Date auctionEnd;
 
+  @NotNull
+  @Enumerated(EnumType.STRING)
+  protected AuctionType auctionType = AuctionType.HIGHEST_DID;
+
+  @Temporal(TemporalType.TIMESTAMP)
   @Future //аннотации на геттер или на public\protected поле
   public Date getAuctionEnd() {
     return auctionEnd;
@@ -60,4 +65,18 @@ public class Item {
   public void setInitialPrice(BigDecimal initialPrice) {
     this.initialPrice = initialPrice;
   }
+
+  public AuctionType getAuctionType() {
+    return auctionType;
+  }
+
+  public void setAuctionType(AuctionType auctionType) {
+    this.auctionType = auctionType;
+  }
+}
+
+enum AuctionType {
+  HIGHEST_DID,
+  LOWEST_BID,
+  FIXED_PRICE
 }

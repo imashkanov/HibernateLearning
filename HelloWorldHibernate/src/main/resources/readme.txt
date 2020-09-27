@@ -95,11 +95,19 @@ EntityManager - это из JPA, Session это из Hibernate
 @Immutable - неизменяемая сущность (экземпляры никогда не обновляются)
 Не выполняется синхронизация перед entityManager.find, только перед выполнением запроса Query
 @Subselect обязательно нужно потом сделать @Synchronize
-@Embedded - для конкретного поля и @Embeddable для класса (ВСТАРИВАЕМЫЙ) - встроенный компонент класса-владельца (пользовательский тип)
+@Embedded - для конкретного поля и @Embeddable для класса (ВСТАРИВАЕМЫЙ, отсутствует ID) - встроенный компонент класса-владельца (пользовательский тип) (Например тип Address)
 @Transient - поле, которое не будет хранимым и не будет сохраняться в БД
 @Basic(optional = false): optional = false - поле необязательное
 @Column(name = "START_PRICE", nullable = false) - тот же самый Basic, но используют её. Name - переопределение имени столбца
+    @Column(nullable = false) - используется при генерации DDL
 @Formula - для вычисляемого поля
 @ColumnTranformer - допустим в БД значение в фунтах, а надо читать и записывать в метрах => (read "COLUMN_SRC" / 2.20462 write (? * 2.20462)) - вычисление выполняется на уровне БД
 Для автогенерации значения - @Generated(тут указывается GenerationTime: Always - генерация при каждом INSERT и UPDATE, Insrert - понятно) + @Column(insertable = false, updatable = false)
 Можно задать значение по умолчанию @ColumnDefault
+Если поле в классе типа Date, нужно с помощью @Temporal задать конкретный тип даты (Дата, время или timestamp), который нужно сохранять в БД, пример: @Temporal(TemporalType.TIMESTAMP)
+    по умолчанию в Hibernate тип даты - timestamp (если не использовать @Temporal)
+@CreationTimestamp - аналогично @Generated присваивает значение текущего timestamp при вставке. Есть аналогичная @UpdateTimestamp - при обновлении.
+@Enumerated - для поля с типом enum, по умолчанию сохранится ORDINAL (то есть просто номер элемента в enum). @Enumerated(EnumType.STRING) - сохранится строковое значение
+!!!!@NotNull - это не NOT NULL в БД, это имеено проверка при beanValidations, это баг hibernate
+    Чтобы в схеме было NOT NULL, нужно @Column(nullable = false)
+@Access: @Access(AccessType.FIELD) - все аннотации должны быть над полями непосредственно. @Access(AccessType.PROPERTY) - все аннотации должны быть над геттерами
