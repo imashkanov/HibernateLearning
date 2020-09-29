@@ -28,6 +28,17 @@ public class Item {
 
   private Date auctionEnd;
 
+  @org.hibernate.annotations.Type(type = "yes_no")
+  protected boolean verified;
+
+  public boolean isVerified() {
+    return verified;
+  }
+
+  public void setVerified(boolean verified) {
+    this.verified = verified;
+  }
+
   @NotNull
   @Enumerated(EnumType.STRING)
   protected AuctionType auctionType = AuctionType.HIGHEST_DID;

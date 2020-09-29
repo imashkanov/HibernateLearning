@@ -30,10 +30,26 @@ public class SessionTest {
   }
 
   @Test
-  public void m01_createMessages() {
+  public void m01_createMessagesWithPersist() {
     Transaction transaction = session.getTransaction();
     transaction.begin();
     createMessages(5).forEach(message -> session.persist(message));
+    transaction.commit();
+  }
+
+  @Test
+  public void m01_createMessagesWithSave() {
+    Transaction transaction = session.getTransaction();
+    transaction.begin();
+    createMessages(5).forEach(message -> session.save(message));
+    transaction.commit();
+  }
+
+  @Test
+  public void m01_createMessagesWithSaveOrUpdate() {
+    Transaction transaction = session.getTransaction();
+    transaction.begin();
+    createMessages(5).forEach(message -> session.saveOrUpdate(message));
     transaction.commit();
   }
 
@@ -43,7 +59,7 @@ public class SessionTest {
     System.out.printf("Created messages: %s\n\n", messages);
   }
 
-  @Test
+  @Test // детектит автоматически, что состояние объектов изменилось
   public void m03_updateMessages() {
     List<Message> messages = getCurrentMessages();
     Transaction transaction = session.getTransaction();
