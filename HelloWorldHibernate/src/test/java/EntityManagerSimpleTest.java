@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class EntityManagerTest {
+public class EntityManagerSimpleTest {
 
   private static EntityManagerFactory entityManagerFactory;
   private static EntityManager entityManager;

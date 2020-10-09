@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class SessionTest {
+public class SessionSimpleTest {
   private static SessionFactory sessionFactory;
   private static Session session;
 

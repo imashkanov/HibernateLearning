@@ -6,7 +6,19 @@
              version="2.1">
   <persistence-unit name="HelloWorldPU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
     <class>org.jpwh.model.helloworld.Message</class>
-    <class>org.jpwh.model.simple.Item</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes> <!--ЭТО НУЖНО ДЛЯ ТОГО, чтобы подтягивались только классы, указанные тут в class-->
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="OneToManyPU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
+    <class>org.jpwh.model.associations.onetomany.bidirectional.Item</class>
+    <class>org.jpwh.model.associations.onetomany.bidirectional.Bid</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>

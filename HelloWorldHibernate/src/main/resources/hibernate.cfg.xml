@@ -12,7 +12,8 @@
     <property name="show_sql">true</property>
 
     <mapping class="org.jpwh.model.helloworld.Message"/>
-    <mapping class="org.jpwh.model.simple.Item"/>
+    <mapping class="org.jpwh.model.associations.onetomany.bidirectional.Item"/>
+    <mapping class="org.jpwh.model.associations.onetomany.bidirectional.Bid"/>
 
     <!-- DB schema will be updated if needed -->
   </session-factory>

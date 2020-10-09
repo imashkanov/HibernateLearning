@@ -9,6 +9,7 @@
              version="2.1">
   <persistence-unit name="какое-то имя"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
     <class>...</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes> <!--ЭТО НУЖНО ДЛЯ ТОГО, чтобы подтягивались только классы, указанные тут в class-->
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/> -- обязательно этот драйвер
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://...?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/> -- обязательно serverTimezone указать и useSSL == false, allowPublicKey... должен быть при получении метамодели
