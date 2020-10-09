@@ -16,6 +16,7 @@
       <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
       <property name="javax.persistence.jdbc.user" value="..."/>
       <property name="javax.persistence.jdbc.password" value="..."/>
+      <property name="hibernate.hbm2ddl.auto" value="create"/> <!--АВТОГЕНЕРАЦИЯ ТАБЛИЦ-->
     </properties>
   </persistence-unit>
 </persistence>
@@ -75,6 +76,7 @@
     <property name="connection.username">root</property>
     <property name="connection.password">root</property>
     <property name="show_sql">true</property>
+    <property name="hibernate.hbm2ddl.auto">create</property> <!--АВТОГЕНЕРАЦИЯ ТАБЛИЦ-->
 
     <mapping class="org.jpwh.model.helloworld.Message"/>
 
