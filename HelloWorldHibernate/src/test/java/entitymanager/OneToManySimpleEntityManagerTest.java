@@ -1,3 +1,5 @@
+package entitymanager;
+
 import org.hibernate.Transaction;
 import org.jpwh.model.associations.onetomany.bidirectional.Bid;
 import org.jpwh.model.associations.onetomany.bidirectional.Item;
@@ -14,13 +16,13 @@ import javax.persistence.Persistence;
 import java.math.BigDecimal;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
-public class OneToManyEntityManagerTest {
+public class OneToManySimpleEntityManagerTest {
 	private static EntityManagerFactory entityManagerFactory;
 	private static EntityManager entityManager;
 
 	@BeforeClass
 	public static void setUpEntityManager() {
-		entityManagerFactory = Persistence.createEntityManagerFactory("OneToManyPU");
+		entityManagerFactory = Persistence.createEntityManagerFactory("OneToManySimplePU");
 		entityManager = entityManagerFactory.createEntityManager();
 	}
 
@@ -31,7 +33,7 @@ public class OneToManyEntityManagerTest {
 	}
 
 	@Test
-	public void createOneToMany() {
+	public void createSimpleOneToMany() {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		Item item = new Item();

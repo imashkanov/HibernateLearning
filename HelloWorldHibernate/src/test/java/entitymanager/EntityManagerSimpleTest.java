@@ -1,3 +1,5 @@
+package entitymanager;
+
 import org.jpwh.model.helloworld.Message;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;

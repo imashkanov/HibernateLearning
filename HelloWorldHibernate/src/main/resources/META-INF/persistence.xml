@@ -15,9 +15,33 @@
       <property name="javax.persistence.jdbc.password" value="root"/>
     </properties>
   </persistence-unit>
-  <persistence-unit name="OneToManyPU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
+  <persistence-unit name="OneToManySimplePU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
     <class>org.jpwh.model.associations.onetomany.bidirectional.Item</class>
     <class>org.jpwh.model.associations.onetomany.bidirectional.Bid</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="OneToManyCascadePersistPU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
+    <class>org.jpwh.model.associations.onetomany.cascadepersist.Item</class>
+    <class>org.jpwh.model.associations.onetomany.cascadepersist.Bid</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="OneToManyOrphanRemovalPU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
+    <class>org.jpwh.model.associations.onetomany.orphanremoval.Item</class>
+    <class>org.jpwh.model.associations.onetomany.orphanremoval.Bid</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
