@@ -35,7 +35,7 @@ public class OneToManySimpleWithSessionTest {
 	public void createOneToMany() {
 		Transaction transaction = session.beginTransaction();
 		Item item = new Item();
-		item.setName("Some item from session");
+		item.setName("Some item from session 1");
 		session.persist(item);
 
 		Bid firstBid = new Bid();

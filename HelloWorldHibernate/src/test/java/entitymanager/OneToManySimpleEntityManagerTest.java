@@ -1,6 +1,5 @@
 package entitymanager;
 
-import org.hibernate.Transaction;
 import org.jpwh.model.associations.onetomany.bidirectional.Bid;
 import org.jpwh.model.associations.onetomany.bidirectional.Item;
 import org.junit.AfterClass;
@@ -33,11 +32,11 @@ public class OneToManySimpleEntityManagerTest {
 	}
 
 	@Test
-	public void createSimpleOneToMany() {
+	public void m01_createSimpleOneToMany() {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		Item item = new Item();
-		item.setName("Some item from EM");
+		item.setName("Some item from EM1");
 		entityManager.persist(item);
 
 		Bid firstBid = new Bid();
@@ -55,4 +54,28 @@ public class OneToManySimpleEntityManagerTest {
 		entityManager.persist(secondBid);
 		transaction.commit();
 	}
+
+  @Test
+  public void m02_createSimpleOneToMany() {
+    EntityTransaction transaction = entityManager.getTransaction();
+    transaction.begin();
+    Item item = new Item();
+    item.setName("Some item from EM2");
+    entityManager.persist(item);
+
+    Bid firstBid = new Bid();
+    firstBid.setValue(new BigDecimal("1233.00"));
+    firstBid.setItem(item);
+    item.getBids().add(firstBid);
+
+    entityManager.persist(firstBid);
+
+    Bid secondBid = new Bid();
+    secondBid.setValue(new BigDecimal("4456.00"));
+    secondBid.setItem(item);
+    item.getBids().add(secondBid);
+
+    entityManager.persist(secondBid);
+    transaction.commit();
+  }
 }

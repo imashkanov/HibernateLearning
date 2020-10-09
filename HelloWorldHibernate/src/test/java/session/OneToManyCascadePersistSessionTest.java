@@ -57,7 +57,7 @@ public class OneToManyCascadePersistSessionTest {
 
 	@Test
 	public void cascadeDelete() {
-		long itemIdForDelete = 4L;
+		long itemIdForDelete = 5L;
 		Transaction transaction = session.beginTransaction();
 		Item itemForDelete = session.get(Item.class, itemIdForDelete);
 		session.delete(itemForDelete);
