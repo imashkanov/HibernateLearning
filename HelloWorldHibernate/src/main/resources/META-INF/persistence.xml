@@ -55,4 +55,56 @@
       <!--<property name="hibernate.hbm2ddl.auto" value="create"/>--> <!--ВСЕГДА ЗАНОВО СОЗДАЁТ СХЕМУ, долженб ыть отключен-->
     </properties>
   </persistence-unit>
+  <persistence-unit name="OneToOneSharedPrimaryKeyPU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
+    <class>org.jpwh.model.associations.onetoone.sharedprimarykey.Address</class>
+    <class>org.jpwh.model.associations.onetoone.sharedprimarykey.User</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+<!--      <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="OneToOneForeignGeneratorPU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
+    <class>org.jpwh.model.associations.onetoone.foreigngenerator.Address</class>
+    <class>org.jpwh.model.associations.onetoone.foreigngenerator.User</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+<!--            <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="OneToOneForeignPKPU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
+    <class>org.jpwh.model.associations.onetoone.foreignkey.Address</class>
+    <class>org.jpwh.model.associations.onetoone.foreignkey.User</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+<!--                  <property name="hibernate.hbm2ddl.auto" value="create"/>-->
+    </properties>
+  </persistence-unit>
+  <persistence-unit name="OneToOneJoinTablePU"> <!--Persistence unit - единица хранения - это отображение классов предметной области и соединение с БД-->
+    <class>org.jpwh.model.associations.onetoone.jointable.Item</class>
+    <class>org.jpwh.model.associations.onetoone.jointable.Shipment</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/HibernateTestDB?serverTimezone=UTC&amp;useSSL=false&amp;allowPublicKeyRetrieval=true"/>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.password" value="root"/>
+                        <property name="hibernate.hbm2ddl.auto" value="create"/>
+    </properties>
+  </persistence-unit>
 </persistence>

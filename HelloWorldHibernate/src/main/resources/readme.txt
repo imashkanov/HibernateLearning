@@ -186,3 +186,15 @@ cascade = CascadeType.PERSIST - все связанные сущности с д
 orphanRemoval = true - аргумент должен быть удалён из БД, если он удалился из коллекции
 Чтобы в схеме БД было ON DELETE CASCADE, нужно вставить @OnDelete(action = OnDeleteAction.CASCADE) - при удалении сущности все связанные с ней сущности тоже будут удалены.
 Нужно OnDelete ставить на той стороне связи, где mappedBy и OneToMany!!!! - ДЛЯ ДВУНАПРАВЛЕННЫХ СВЯЗЕЙ, если не двунапрапвленная, то только где ManyToOne!!!!!!
+
+@Id
+@GeneratedValue(generator = "addressKeyGenerator")  При сохранении данного экземпляра класса этот генератор извлекает id из сущности user, у которого обязательно должен быть обычный генератор
+@GenericGenerator(name = "addressKeyGenerator", strategy = "foreign",
+			parameters = @Parameter(name = "property", value = "user"))
+protected long id;
+@PrimaryKeyJoinColumn - общий первичный ключ
+@JoinColumn можно воспринимать как просто столбец внешнего ключа
+
+@JoinTable(name = "ITEM1_ITEM2", //имя связующей таблицы для one-to-one (если обе сущности имеют связь с этой таблицей 1 к 1)
+	        joinColumns = @JoinColumn(name = "ITEM1_ID"), // переопределение имени id-шки ITEM1
+			inverseJoinColumns = @JoinColumn(name = "ITEM2_ID")) //переопределние имени id-шки ITEM2
