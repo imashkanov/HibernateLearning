@@ -32,7 +32,7 @@ public class ManyToManyTernaryTest {
 	}
 
 	@Test
-	public void testManyToManyLinkedEntityCreate() {
+	public void testManyToManyTernaryCreate() {
 		EntityTransaction transaction = entityManager.getTransaction();
 		transaction.begin();
 		Category someCategory = new Category("Some Category");
