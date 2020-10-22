@@ -1,5 +1,6 @@
 package entitymanager;
 
+import org.hibernate.Hibernate;
 import org.jpwh.model.helloworld.Message;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
@@ -7,10 +8,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 import javax.persistence.metamodel.ManagedType;
 import javax.persistence.metamodel.Metamodel;
 import javax.persistence.metamodel.SingularAttribute;
@@ -131,5 +129,22 @@ public class EntityManagerSimpleTest {
     assertEquals(Date.class, auctionEndAttr.getJavaType());
     assertFalse(auctionEndAttr.isCollection());
     assertFalse(auctionEndAttr.isId());
+  }
+
+  @Test
+  public void getFromCache() {
+    long messageID = 1L;
+    Message message1 = entityManager.find(Message.class, messageID);
+    Message message2 = entityManager.find(Message.class, messageID);
+  }
+
+  @Test
+  public void getReference() {
+    long messageID = 1L;
+    Message message = entityManager.getReference(Message.class, messageID);
+    PersistenceUnitUtil persistenceUnitUtil = entityManagerFactory.getPersistenceUnitUtil();
+    assertFalse(persistenceUnitUtil.isLoaded(message));
+    Hibernate.initialize(message);
+    System.out.println("DONE");
   }
 }
