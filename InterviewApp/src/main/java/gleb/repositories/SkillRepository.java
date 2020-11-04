@@ -1,27 +1,24 @@
 package gleb.repositories;
 
-import org.hibernate.Session;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Repository
 public class SkillRepository  {
 
-  Session hibernateSession;
+  private EntityManager entityManager;
 
   @Autowired
-  public void setHibernateSession(Session hibernateSession) {
-    this.hibernateSession = hibernateSession;
+  public void setEntityManager(EntityManager entityManager) {
+    this.entityManager = entityManager;
   }
 
   public List<String> getSkillsList(HttpServletRequest request) {
-    String query = "select * from Skill";
-    Query getSkillsListQuery = hibernateSession.createNativeQuery(query);
-    return getSkillsListQuery.list();
+    return (List<String>)entityManager.createNativeQuery("select * from Skill").getResultList();
   }
 
 }
