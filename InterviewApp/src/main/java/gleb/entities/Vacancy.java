@@ -108,8 +108,8 @@ public class Vacancy {
 
   @ManyToMany
   @JoinTable(name = "vacancy_requirement",
-    joinColumns = {@JoinColumn(name = "id_vacancy", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "id_skill", referencedColumnName = "id")}
+    joinColumns = {@JoinColumn(name = "vacancy_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "skill_id", referencedColumnName = "id")}
   )
   @JsonIgnore
   public List<Skill> getSkillRequirements() { return skillRequirements; }

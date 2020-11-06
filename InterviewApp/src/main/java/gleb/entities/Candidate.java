@@ -66,8 +66,8 @@ public class Candidate {
 
   @ManyToMany()
   @JoinTable(name = "candidate_competence",
-    joinColumns = {@JoinColumn(name = "id_candidate", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "id_skill", referencedColumnName = "id")}
+    joinColumns = {@JoinColumn(name = "candidate_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "skill_id", referencedColumnName = "id")}
     )
   @JsonIgnore
   public List<Skill> getSkills() {
@@ -89,8 +89,8 @@ public class Candidate {
 
   @ManyToMany
   @JoinTable(name = "candidates_for_vacancies",
-    joinColumns = {@JoinColumn(name = "id_candidate", referencedColumnName = "id")},
-    inverseJoinColumns = {@JoinColumn(name = "id_vacancy", referencedColumnName = "id")}
+    joinColumns = {@JoinColumn(name = "candidate_id", referencedColumnName = "id")},
+    inverseJoinColumns = {@JoinColumn(name = "vacancy_id", referencedColumnName = "id")}
     )
   @JsonIgnore
   public List<Vacancy> getPassedVacancies() { return passedVacancies; }

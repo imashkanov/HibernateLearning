@@ -1,29 +1,20 @@
 package gleb.services;
 
-import gleb.repositories.SkillRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import gleb.requestmodels.DeleteSkillByIdInModel;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
+public interface SkillService {
 
-@Service
-public class SkillService extends AbstractService {
+	default ResponseEntity getResponseEntityOnServerError(Exception e) {
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON_UTF8)
+				.body("Server error");
+	}
 
-  private SkillRepository skillRepository;
+	ResponseEntity getSkills();
 
-  @Autowired
-  public void setSkillRepository(SkillRepository skillRepository) {
-    this.skillRepository = skillRepository;
-  }
+	ResponseEntity getCountOfSkills();
 
-  public ResponseEntity getAllSkills() {
-    try {
-      List<String> skills = skillRepository.getSkillsList();
-      return ResponseEntity.ok(skills);
-    } catch (Exception e) {
-      return getResponseEntityOnServerError(e);
-    }
-  }
+	void deleteSkillById(DeleteSkillByIdInModel inModel);
 }
