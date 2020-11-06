@@ -20,7 +20,7 @@ public class SkillRepository implements CrudRepository<Skill, Long> {
     this.entityManager = entityManager;
   }
 
-  public List<String> getSkillsList(HttpServletRequest request) {
+  public List<String> getSkillsList() {
     return (List<String>)entityManager.createNativeQuery("select * from Skill").getResultList();
   }
 

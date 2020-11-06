@@ -16,19 +16,19 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 	}
 
-	@Bean
-	protected ServletContextListener listener() {
-		return new ServletContextListener() {
-			@Override
-			public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("ServletContext initialized");
-			}
-
-			@Override
-			public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("ServletContext destroyed");
-			}
-		};
-	}
+//	@Bean
+//	protected ServletContextListener listener() {
+//		return new ServletContextListener() {
+//			@Override
+//			public void contextInitialized(ServletContextEvent sce) {
+//        System.out.println("ServletContext initialized");
+//			}
+//
+//			@Override
+//			public void contextDestroyed(ServletContextEvent sce) {
+//        System.out.println("ServletContext destroyed");
+//			}
+//		};
+//	}
 
 }

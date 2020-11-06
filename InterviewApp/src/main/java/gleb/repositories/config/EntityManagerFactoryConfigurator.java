@@ -1,4 +1,4 @@
-package gleb.repositories.Config;
+package gleb.repositories.config;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;

@@ -18,9 +18,9 @@ public class SkillService extends AbstractService {
     this.skillRepository = skillRepository;
   }
 
-  public ResponseEntity getAllSkills(HttpServletRequest request) {
+  public ResponseEntity getAllSkills() {
     try {
-      List<String> skills = skillRepository.getSkillsList(request);
+      List<String> skills = skillRepository.getSkillsList();
       return ResponseEntity.ok(skills);
     } catch (Exception e) {
       return getResponseEntityOnServerError(e);

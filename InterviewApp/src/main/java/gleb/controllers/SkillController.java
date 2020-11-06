@@ -1,4 +1,4 @@
-package gleb.Controllers;
+package gleb.controllers;
 
 import gleb.services.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,6 @@ public class SkillController {
 
   @GetMapping("/skills")
   public ResponseEntity getAllSkills(HttpServletRequest request) {
-    return skillService.getAllSkills(request);
+    return skillService.getAllSkills();
   }
 }
