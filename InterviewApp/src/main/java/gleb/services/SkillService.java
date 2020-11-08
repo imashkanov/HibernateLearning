@@ -2,9 +2,7 @@ package gleb.services;
 
 import gleb.entities.Skill;
 import gleb.repositories.SkillRepository;
-import gleb.requestmodels.DeleteSkillByIdInModel;
-import gleb.requestmodels.SkillListOutModel;
-import gleb.requestmodels.SkillsCountOutModel;
+import gleb.requestmodels.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SkillService {
@@ -46,6 +45,28 @@ public class SkillService {
 
   public void deleteSkillById(DeleteSkillByIdInModel inModel) {
     skillRepository.deleteById(inModel.getId());
+  }
+
+  public void deleteAllSkills() {
+    skillRepository.deleteAll();
+  }
+
+  public ResponseEntity insertSkill(InsertSkillInModel inModel) {
+    InsertSkillOutModel outModel = new InsertSkillOutModel();
+    Skill insertingSkill = new Skill();
+    insertingSkill.setName(inModel.getSkillName());
+    try {
+      Skill insertedSkill = skillRepository.save(insertingSkill);
+      outModel.setId(insertedSkill.getId());
+      return ResponseEntity.ok(outModel);
+    } catch (Exception e) {
+      return getResponseEntityOnServerError(e);
+    }
+  }
+
+  public void updateSkill(UpdateSkillInModel inModel) {
+    Optional<Skill> updatingSkill = skillRepository.findById(inModel.getId());
+    updatingSkill.ifPresent(skill -> skillRepository.updateSkill(inModel.getName(), skill));
   }
 
   private ResponseEntity getResponseEntityOnServerError(Exception e) {

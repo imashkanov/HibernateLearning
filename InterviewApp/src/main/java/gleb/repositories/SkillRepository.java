@@ -24,8 +24,9 @@ public class SkillRepository implements CrudRepository<Skill, Long> {
 
   @Transactional
   @Override
-  public <S extends Skill> S save(S s) {
-    return null;
+  public <S extends Skill> S save(S skill) {
+    entityManager.persist(skill);
+    return skill;
   }
 
   @Override
@@ -67,8 +68,8 @@ public class SkillRepository implements CrudRepository<Skill, Long> {
     return entityManager.createQuery(criteriaLong).getSingleResult();
   }
 
-  @Override
   @Transactional
+  @Override
   public void deleteById(Long id) {
     Query deleteSkillByIdQuery = entityManager.createQuery("delete from Skill s where s.id = :id").setParameter("id", id);
     deleteSkillByIdQuery.executeUpdate();
@@ -82,13 +83,18 @@ public class SkillRepository implements CrudRepository<Skill, Long> {
 
   @Override
   public void deleteAll(Iterable<? extends Skill> skillsCollectionForDelete) {
-    skillsCollectionForDelete.forEach(this::delete);
   }
 
 
+  @Transactional
   @Override
   public void deleteAll() {
-    Iterable<Skill> skillForDelete = findAll();
-    skillForDelete.forEach(this::delete);
+    Query deleteAllSkillsQuery = entityManager.createQuery("delete from Skill s");
+    deleteAllSkillsQuery.executeUpdate();
+  }
+
+  @Transactional
+  public void updateSkill(String name, Skill skill) {
+    skill.setName(name);
   }
 }
