@@ -1,13 +1,13 @@
 package gleb.requestmodels;
 
 public class DeleteSkillByIdInModel {
-	private long skillId;
+	private long id;
 
-	public long getSkillId() {
-		return skillId;
+	public long getId() {
+		return id;
 	}
 
-	public void setSkillId(long skillId) {
-		this.skillId = skillId;
+	public void setId(long id) {
+		this.id = id;
 	}
 }

@@ -48,6 +48,7 @@ public class Skill {
   )
 
   public List<Candidate> getCorrespondingCandidates() { return correspondingCandidates; }
+
   public void setCorrespondingCandidates(List<Candidate> correspondingCandidates) {
     this.correspondingCandidates = correspondingCandidates;
   }
