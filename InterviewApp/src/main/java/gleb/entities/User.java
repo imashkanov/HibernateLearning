@@ -13,13 +13,13 @@ public class User {
 
   private String email;
 
+  private String userName;
+
   private String password;
 
-  private String surname;
+  private boolean active;
 
-  private String name;
-
-  private State state;
+  private List<UserRole> userRoles;
 
   private List<Interview> speakedInterviews;
 
@@ -43,6 +43,15 @@ public class User {
     this.email = email;
   }
 
+  @Column(name = "username", nullable = false)
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String surname) {
+    this.userName = surname;
+  }
+
   @Column(nullable = false)
   public String getPassword() {
     return password;
@@ -52,32 +61,24 @@ public class User {
     this.password = password;
   }
 
-  @Column(nullable = false)
-  public String getSurname() {
-    return surname;
+  @Column(name = "active", nullable = false)
+  public boolean isActive() {
+    return active;
   }
 
-  public void setSurname(String surname) {
-    this.surname = surname;
+  public void setActive(boolean active) {
+    this.active = active;
   }
 
-  @Column(nullable = false)
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  @Column(name = "user_state", nullable = false)
   @Enumerated(EnumType.STRING)
-  public State getState() {
-    return state;
+  @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
+  @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
+  public List<UserRole> getUserRoles() {
+    return userRoles;
   }
 
-  public void setState(State state) {
-    this.state = state;
+  public void setUserRoles(List<UserRole> userRoles) {
+    this.userRoles = userRoles;
   }
 
   @ManyToMany
@@ -96,7 +97,7 @@ public class User {
 
   public void setDevelopedVacancies(List<Vacancy> developedVacancies) { this.developedVacancies = developedVacancies; }
 
-  public enum State {BLOCKED,ACTIVE}
+  public enum UserRole {USER}
 
   @Override
   public boolean equals(Object o) {
@@ -104,18 +105,18 @@ public class User {
     if (o == null || getClass() != o.getClass()) return false;
     User user = (User) o;
     return id == user.id &&
+      active == user.active &&
       Objects.equals(email, user.email) &&
+      Objects.equals(userName, user.userName) &&
       Objects.equals(password, user.password) &&
-      Objects.equals(surname, user.surname) &&
-      Objects.equals(name, user.name) &&
-      state == user.state &&
+      Objects.equals(userRoles, user.userRoles) &&
       Objects.equals(speakedInterviews, user.speakedInterviews) &&
       Objects.equals(developedVacancies, user.developedVacancies);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, email, password, surname, name, state, speakedInterviews, developedVacancies);
+    return Objects.hash(id, email, userName, password, active, userRoles, speakedInterviews, developedVacancies);
   }
 
   @Override
@@ -123,10 +124,10 @@ public class User {
     return "User{" +
       "id=" + id +
       ", email='" + email + '\'' +
+      ", userName='" + userName + '\'' +
       ", password='" + password + '\'' +
-      ", surname='" + surname + '\'' +
-      ", name='" + name + '\'' +
-      ", state=" + state +
+      ", active=" + active +
+      ", userRoles=" + userRoles +
       ", speakedInterviews=" + speakedInterviews +
       ", developedVacancies=" + developedVacancies +
       '}';
