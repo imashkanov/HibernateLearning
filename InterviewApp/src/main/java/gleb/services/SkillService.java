@@ -66,7 +66,10 @@ public class SkillService {
 
   public void updateSkill(UpdateSkillInModel inModel) {
     Optional<Skill> updatingSkill = skillRepository.findById(inModel.getId());
-    updatingSkill.ifPresent(skill -> skillRepository.updateSkill(inModel.getName(), skill));
+    updatingSkill.ifPresent(skill -> {
+      skill.setName(inModel.getName());
+      skillRepository.save(skill);
+    });
   }
 
   private ResponseEntity getResponseEntityOnServerError(Exception e) {
