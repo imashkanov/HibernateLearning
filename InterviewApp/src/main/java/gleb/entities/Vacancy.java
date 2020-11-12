@@ -3,13 +3,11 @@ package gleb.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Vacancy {
-  private long id;
+public class Vacancy extends BaseEntity {
 
   private String position;
 
@@ -23,21 +21,11 @@ public class Vacancy {
 
   private User user;
 
-  private List<Interview> iterviews;
+  private List<Interview> interviews;
 
   private List<Candidate> candidates;
 
   private List<Skill> skillRequirements;
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
 
   @Column(nullable = false)
   public String getPosition() {
@@ -92,8 +80,8 @@ public class Vacancy {
 
   @OneToMany(mappedBy = "vacancy")
   @JsonIgnore
-  public List<Interview> getIterviews() { return iterviews; }
-  public void setIterviews(List<Interview> interviews) { this.iterviews = interviews; }
+  public List<Interview> getInterviews() { return interviews; }
+  public void setInterviews(List<Interview> interviews) { this.interviews = interviews; }
 
 
   @ManyToMany
@@ -123,36 +111,34 @@ public class Vacancy {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Vacancy vacancy = (Vacancy) o;
-    return id == vacancy.id &&
-      Float.compare(vacancy.salaryInDollarsFrom, salaryInDollarsFrom) == 0 &&
-      Float.compare(vacancy.salaryInDollarsTo, salaryInDollarsTo) == 0 &&
-      Float.compare(vacancy.experienceYearsRequire, experienceYearsRequire) == 0 &&
-      Objects.equals(position, vacancy.position) &&
-      vacancyState == vacancy.vacancyState &&
-      Objects.equals(user, vacancy.user) &&
-      Objects.equals(iterviews, vacancy.iterviews) &&
-      Objects.equals(candidates, vacancy.candidates) &&
-      Objects.equals(skillRequirements, vacancy.skillRequirements);
+    return Float.compare(vacancy.salaryInDollarsFrom, salaryInDollarsFrom) == 0 &&
+            Float.compare(vacancy.salaryInDollarsTo, salaryInDollarsTo) == 0 &&
+            Float.compare(vacancy.experienceYearsRequire, experienceYearsRequire) == 0 &&
+            Objects.equals(position, vacancy.position) &&
+            vacancyState == vacancy.vacancyState &&
+            Objects.equals(user, vacancy.user) &&
+            Objects.equals(interviews, vacancy.interviews) &&
+            Objects.equals(candidates, vacancy.candidates) &&
+            Objects.equals(skillRequirements, vacancy.skillRequirements);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, position, salaryInDollarsFrom, salaryInDollarsTo, vacancyState, experienceYearsRequire, user, iterviews, candidates, skillRequirements);
+    return Objects.hash(position, salaryInDollarsFrom, salaryInDollarsTo, vacancyState, experienceYearsRequire, user, interviews, candidates, skillRequirements);
   }
 
   @Override
   public String toString() {
     return "Vacancy{" +
-      "id=" + id +
-      ", position='" + position + '\'' +
-      ", salaryInDollarsFrom=" + salaryInDollarsFrom +
-      ", salaryInDollarsTo=" + salaryInDollarsTo +
-      ", vacancyState=" + vacancyState +
-      ", experienceYearsRequire=" + experienceYearsRequire +
-      ", user=" + user +
-      ", iterviews=" + iterviews +
-      ", candidates=" + candidates +
-      ", skillRequirements=" + skillRequirements +
-      '}';
+            "position='" + position + '\'' +
+            ", salaryInDollarsFrom=" + salaryInDollarsFrom +
+            ", salaryInDollarsTo=" + salaryInDollarsTo +
+            ", vacancyState=" + vacancyState +
+            ", experienceYearsRequire=" + experienceYearsRequire +
+            ", user=" + user +
+            ", interviews=" + interviews +
+            ", candidates=" + candidates +
+            ", skillRequirements=" + skillRequirements +
+            '}';
   }
 }

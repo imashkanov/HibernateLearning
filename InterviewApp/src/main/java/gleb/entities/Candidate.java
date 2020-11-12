@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Candidate {
-  private long id;
+public class Candidate extends BaseEntity {
 
   private String name;
 
@@ -25,16 +24,6 @@ public class Candidate {
   private List<Vacancy> passedVacancies;
 
   private List<Interview> interviews;
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
 
   @Column(nullable = false)
   public String getName() { return name; }
@@ -102,32 +91,30 @@ public class Candidate {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Candidate candidate = (Candidate) o;
-    return id == candidate.id &&
-      Float.compare(candidate.salaryInDollars, salaryInDollars) == 0 &&
-      Objects.equals(name, candidate.name) &&
-      Objects.equals(surname, candidate.surname) &&
-      Objects.equals(birthday, candidate.birthday) &&
-      Objects.equals(candidateSkills, candidate.candidateSkills) &&
-      Objects.equals(passedVacancies, candidate.passedVacancies) &&
-      Objects.equals(interviews, candidate.interviews);
+    return Float.compare(candidate.salaryInDollars, salaryInDollars) == 0 &&
+            Objects.equals(name, candidate.name) &&
+            Objects.equals(surname, candidate.surname) &&
+            Objects.equals(birthday, candidate.birthday) &&
+            Objects.equals(candidateSkills, candidate.candidateSkills) &&
+            Objects.equals(passedVacancies, candidate.passedVacancies) &&
+            Objects.equals(interviews, candidate.interviews);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, surname, birthday, salaryInDollars, candidateSkills, passedVacancies, interviews);
+    return Objects.hash(name, surname, birthday, salaryInDollars, candidateSkills, passedVacancies, interviews);
   }
 
   @Override
   public String toString() {
     return "Candidate{" +
-      "id=" + id +
-      ", name='" + name + '\'' +
-      ", surname='" + surname + '\'' +
-      ", birthday=" + birthday +
-      ", salaryInDollars=" + salaryInDollars +
-      ", candidateSkills=" + candidateSkills +
-      ", passedVacancies=" + passedVacancies +
-      ", interviews=" + interviews +
-      '}';
+            "name='" + name + '\'' +
+            ", surname='" + surname + '\'' +
+            ", birthday=" + birthday +
+            ", salaryInDollars=" + salaryInDollars +
+            ", candidateSkills=" + candidateSkills +
+            ", passedVacancies=" + passedVacancies +
+            ", interviews=" + interviews +
+            '}';
   }
 }

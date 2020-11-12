@@ -5,25 +5,13 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Skill {
-
-  private long id;
+public class Skill extends BaseEntity {
 
   private String name;
 
   private List<Vacancy> correspondingVacancies;
 
   private List<Candidate> correspondingCandidates;
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
 
   @Column(nullable = false)
   public String getName() { return name; }
@@ -58,24 +46,22 @@ public class Skill {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Skill skill = (Skill) o;
-    return id == skill.id &&
-      Objects.equals(name, skill.name) &&
-      Objects.equals(correspondingVacancies, skill.correspondingVacancies) &&
-      Objects.equals(correspondingCandidates, skill.correspondingCandidates);
+    return Objects.equals(name, skill.name) &&
+            Objects.equals(correspondingVacancies, skill.correspondingVacancies) &&
+            Objects.equals(correspondingCandidates, skill.correspondingCandidates);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, correspondingVacancies, correspondingCandidates);
+    return Objects.hash(name, correspondingVacancies, correspondingCandidates);
   }
 
   @Override
   public String toString() {
     return "Skill{" +
-      "id=" + id +
-      ", name='" + name + '\'' +
-      ", correspondingVacancies=" + correspondingVacancies +
-      ", correspondingCandidates=" + correspondingCandidates +
-      '}';
+            "name='" + name + '\'' +
+            ", correspondingVacancies=" + correspondingVacancies +
+            ", correspondingCandidates=" + correspondingCandidates +
+            '}';
   }
 }

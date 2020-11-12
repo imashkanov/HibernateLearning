@@ -9,8 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Interview {
-  private long id;
+public class Interview extends BaseEntity {
 
   private Candidate candidate;
 
@@ -21,16 +20,6 @@ public class Interview {
   private Timestamp factDate;
 
   private List<User> speakers;
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
 
   @ManyToOne
   @JoinColumn(name = "candidate_id", nullable = false)
@@ -84,28 +73,26 @@ public class Interview {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Interview interview = (Interview) o;
-    return id == interview.id &&
-      Objects.equals(candidate, interview.candidate) &&
-      Objects.equals(vacancy, interview.vacancy) &&
-      Objects.equals(planDate, interview.planDate) &&
-      Objects.equals(factDate, interview.factDate) &&
-      Objects.equals(speakers, interview.speakers);
+    return Objects.equals(candidate, interview.candidate) &&
+            Objects.equals(vacancy, interview.vacancy) &&
+            Objects.equals(planDate, interview.planDate) &&
+            Objects.equals(factDate, interview.factDate) &&
+            Objects.equals(speakers, interview.speakers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, candidate, vacancy, planDate, factDate, speakers);
+    return Objects.hash(candidate, vacancy, planDate, factDate, speakers);
   }
 
   @Override
   public String toString() {
     return "Interview{" +
-      "id=" + id +
-      ", candidate=" + candidate +
-      ", vacancy=" + vacancy +
-      ", planDate=" + planDate +
-      ", factDate=" + factDate +
-      ", speakers=" + speakers +
-      '}';
+            "candidate=" + candidate +
+            ", vacancy=" + vacancy +
+            ", planDate=" + planDate +
+            ", factDate=" + factDate +
+            ", speakers=" + speakers +
+            '}';
   }
 }

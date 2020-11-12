@@ -4,52 +4,51 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
-public class User {
-
-  private long id;
-
-  private String email;
+public class User extends BaseEntity {
 
   private String userName;
 
+  private String firstName;
+
+  private String lastName;
+
   private String password;
 
-  private boolean active;
+  private String email;
 
-  private List<UserRole> userRoles;
+  private List<Role> roles;
 
   private List<Interview> speakedInterviews;
 
   private List<Vacancy> developedVacancies;
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
 
   @Column(name = "username", nullable = false)
   public String getUserName() {
     return userName;
   }
 
-  public void setUserName(String surname) {
-    this.userName = surname;
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
+
+  @Column(name = "firstname", nullable = false)
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstname) {
+    this.firstName = firstname;
+  }
+
+  @Column(name = "lastname", nullable = false)
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastname) {
+    this.lastName = lastname;
   }
 
   @Column(nullable = false)
@@ -61,24 +60,25 @@ public class User {
     this.password = password;
   }
 
-  @Column(name = "active", nullable = false)
-  public boolean isActive() {
-    return active;
+  public String getEmail() {
+    return email;
   }
 
-  public void setActive(boolean active) {
-    this.active = active;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
-  @Enumerated(EnumType.STRING)
-  @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
-  @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
-  public List<UserRole> getUserRoles() {
-    return userRoles;
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "user_roles",
+          joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+          inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")}
+  )
+  public List<Role> getRoles() {
+    return roles;
   }
 
-  public void setUserRoles(List<UserRole> userRoles) {
-    this.userRoles = userRoles;
+  public void setRoles(List<Role> roles) {
+    this.roles = roles;
   }
 
   @ManyToMany
@@ -97,39 +97,4 @@ public class User {
 
   public void setDevelopedVacancies(List<Vacancy> developedVacancies) { this.developedVacancies = developedVacancies; }
 
-  public enum UserRole {USER}
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    User user = (User) o;
-    return id == user.id &&
-      active == user.active &&
-      Objects.equals(email, user.email) &&
-      Objects.equals(userName, user.userName) &&
-      Objects.equals(password, user.password) &&
-      Objects.equals(userRoles, user.userRoles) &&
-      Objects.equals(speakedInterviews, user.speakedInterviews) &&
-      Objects.equals(developedVacancies, user.developedVacancies);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, email, userName, password, active, userRoles, speakedInterviews, developedVacancies);
-  }
-
-  @Override
-  public String toString() {
-    return "User{" +
-      "id=" + id +
-      ", email='" + email + '\'' +
-      ", userName='" + userName + '\'' +
-      ", password='" + password + '\'' +
-      ", active=" + active +
-      ", userRoles=" + userRoles +
-      ", speakedInterviews=" + speakedInterviews +
-      ", developedVacancies=" + developedVacancies +
-      '}';
-  }
 }
