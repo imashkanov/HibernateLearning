@@ -1,5 +1,6 @@
 package gleb.services;
 
+import gleb.entities.EntityStatus;
 import gleb.entities.Skill;
 import gleb.repositories.SkillRepository;
 import gleb.dto.*;
@@ -53,6 +54,7 @@ public class SkillService extends AbstractService {
     InsertSkillReponseDto outModel = new InsertSkillReponseDto();
     Skill insertingSkill = new Skill();
     insertingSkill.setName(inModel.getSkillName());
+    insertingSkill.setStatus(EntityStatus.ACTIVE);
     try {
       Skill insertedSkill = skillRepository.save(insertingSkill);
       outModel.setId(insertedSkill.getId());
