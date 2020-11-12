@@ -4,8 +4,6 @@ import gleb.entities.Skill;
 import gleb.repositories.SkillRepository;
 import gleb.requestmodels.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SkillService {
+public class SkillService extends AbstractService {
 
   private SkillRepository skillRepository;
 
@@ -25,7 +23,7 @@ public class SkillService {
   public ResponseEntity getSkills() {
     SkillListOutModel outModel = new SkillListOutModel();
     try {
-      List<Skill> skillList = (List<Skill>) skillRepository.findAll();
+      List<Skill> skillList = skillRepository.findAll();
       outModel.setSkills(skillList);
       return ResponseEntity.ok(outModel);
     } catch (Exception e) {
@@ -70,9 +68,5 @@ public class SkillService {
       skill.setName(inModel.getName());
       skillRepository.save(skill);
     });
-  }
-
-  private ResponseEntity getResponseEntityOnServerError(Exception e) {
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).contentType(MediaType.APPLICATION_JSON_UTF8).body(e.getMessage());
   }
 }
