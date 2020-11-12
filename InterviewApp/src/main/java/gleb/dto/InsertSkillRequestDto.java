@@ -1,6 +1,6 @@
-package gleb.requestmodels;
+package gleb.dto;
 
-public class InsertSkillInModel {
+public class InsertSkillRequestDto {
   private String skillName;
 
   public String getSkillName() {

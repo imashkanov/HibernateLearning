@@ -1,8 +1,8 @@
 package gleb.controllers;
 
-import gleb.requestmodels.DeleteSkillByIdInModel;
-import gleb.requestmodels.InsertSkillInModel;
-import gleb.requestmodels.UpdateSkillInModel;
+import gleb.dto.DeleteSkillByIdRequestDto;
+import gleb.dto.InsertSkillRequestDto;
+import gleb.dto.UpdateSkillRequestDto;
 import gleb.services.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -31,7 +31,7 @@ public class SkillController {
   }
 
   @PostMapping("/deleteSkillById")
-  public void deleteSkillById(@RequestBody DeleteSkillByIdInModel inModel) {
+  public void deleteSkillById(@RequestBody DeleteSkillByIdRequestDto inModel) {
     skillService.deleteSkillById(inModel);
   }
 
@@ -41,12 +41,12 @@ public class SkillController {
   }
 
   @PostMapping("/insertSkill")
-  public ResponseEntity insertSkill(@RequestBody InsertSkillInModel inModel) {
+  public ResponseEntity insertSkill(@RequestBody InsertSkillRequestDto inModel) {
     return skillService.insertSkill(inModel);
   }
 
   @PutMapping("/updateSkill")
-  public void updateSkill(@RequestBody UpdateSkillInModel inModel) {
+  public void updateSkill(@RequestBody UpdateSkillRequestDto inModel) {
     skillService.updateSkill(inModel);
   }
 }

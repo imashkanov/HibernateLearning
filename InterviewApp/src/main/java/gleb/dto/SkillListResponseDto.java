@@ -1,10 +1,10 @@
-package gleb.requestmodels;
+package gleb.dto;
 
 import gleb.entities.Skill;
 
 import java.util.List;
 
-public class SkillListOutModel {
+public class SkillListResponseDto {
 	private List<Skill> skills;
 
 	public List<Skill> getSkills() {

@@ -1,6 +1,6 @@
-package gleb.requestmodels;
+package gleb.dto;
 
-public class SkillsCountOutModel {
+public class SkillsCountResponseDto {
 	private long count;
 
 	public long getCount() {

@@ -1,6 +1,6 @@
-package gleb.requestmodels;
+package gleb.dto;
 
-public class UpdateSkillInModel {
+public class UpdateSkillRequestDto {
   private long id;
   private String name;
 

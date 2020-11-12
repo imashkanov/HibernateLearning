@@ -2,7 +2,7 @@ package gleb.services;
 
 import gleb.entities.Skill;
 import gleb.repositories.SkillRepository;
-import gleb.requestmodels.*;
+import gleb.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class SkillService extends AbstractService {
   }
 
   public ResponseEntity getSkills() {
-    SkillListOutModel outModel = new SkillListOutModel();
+    SkillListResponseDto outModel = new SkillListResponseDto();
     try {
       List<Skill> skillList = skillRepository.findAll();
       outModel.setSkills(skillList);
@@ -32,7 +32,7 @@ public class SkillService extends AbstractService {
   }
 
   public ResponseEntity getCountOfSkills() {
-    SkillsCountOutModel outModel = new SkillsCountOutModel();
+    SkillsCountResponseDto outModel = new SkillsCountResponseDto();
     try {
       outModel.setCount(skillRepository.count());
       return ResponseEntity.ok(outModel);
@@ -41,7 +41,7 @@ public class SkillService extends AbstractService {
     }
   }
 
-  public void deleteSkillById(DeleteSkillByIdInModel inModel) {
+  public void deleteSkillById(DeleteSkillByIdRequestDto inModel) {
     skillRepository.deleteById(inModel.getId());
   }
 
@@ -49,8 +49,8 @@ public class SkillService extends AbstractService {
     skillRepository.deleteAll();
   }
 
-  public ResponseEntity insertSkill(InsertSkillInModel inModel) {
-    InsertSkillOutModel outModel = new InsertSkillOutModel();
+  public ResponseEntity insertSkill(InsertSkillRequestDto inModel) {
+    InsertSkillReponseDto outModel = new InsertSkillReponseDto();
     Skill insertingSkill = new Skill();
     insertingSkill.setName(inModel.getSkillName());
     try {
@@ -62,7 +62,7 @@ public class SkillService extends AbstractService {
     }
   }
 
-  public void updateSkill(UpdateSkillInModel inModel) {
+  public void updateSkill(UpdateSkillRequestDto inModel) {
     Optional<Skill> updatingSkill = skillRepository.findById(inModel.getId());
     updatingSkill.ifPresent(skill -> {
       skill.setName(inModel.getName());

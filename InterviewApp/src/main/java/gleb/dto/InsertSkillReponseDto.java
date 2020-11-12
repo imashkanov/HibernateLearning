@@ -1,6 +1,6 @@
-package gleb.requestmodels;
+package gleb.dto;
 
-public class InsertSkillOutModel {
+public class InsertSkillReponseDto {
   private long id;
 
   public long getId() {

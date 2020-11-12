@@ -1,6 +1,6 @@
-package gleb.requestmodels;
+package gleb.dto;
 
-public class DeleteSkillByIdInModel {
+public class DeleteSkillByIdRequestDto {
 	private long id;
 
 	public long getId() {
