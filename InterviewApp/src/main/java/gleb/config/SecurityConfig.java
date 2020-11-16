@@ -33,13 +33,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.httpBasic().disable()
-				.csrf().disable()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+					.csrf().disable()
+					.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
-				.authorizeRequests()
-				.antMatchers(LOGIN_ENDPOINTS).permitAll()
-//				.antMatchers(USER_ENDPOINTS).hasAnyRole()
-				.anyRequest().authenticated()
-				.and().apply(new JwtConfigurer(jwtTokenProvider));
+					.authorizeRequests()
+					.antMatchers(LOGIN_ENDPOINTS).permitAll()
+//					.antMatchers(USER_ENDPOINTS).hasAnyRole()
+					.anyRequest().authenticated()
+				.and()
+				.apply(new JwtConfigurer(jwtTokenProvider));
 	}
 }
