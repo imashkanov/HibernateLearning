@@ -1,8 +1,8 @@
 package gleb.services;
 
-import gleb.dto.DeleteSkillByIdRequestDto;
-import gleb.dto.InsertSkillRequestDto;
-import gleb.dto.UpdateSkillRequestDto;
+import gleb.dto.skills.DeleteSkillByIdRequestDto;
+import gleb.dto.skills.InsertSkillRequestDto;
+import gleb.dto.skills.UpdateSkillRequestDto;
 import org.springframework.http.ResponseEntity;
 
 public interface SkillService extends AbstractService {

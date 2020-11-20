@@ -1,6 +1,6 @@
 package gleb.services.impl;
 
-import gleb.dto.*;
+import gleb.dto.skills.*;
 import gleb.entities.EntityStatus;
 import gleb.entities.Skill;
 import gleb.repositories.SkillRepository;

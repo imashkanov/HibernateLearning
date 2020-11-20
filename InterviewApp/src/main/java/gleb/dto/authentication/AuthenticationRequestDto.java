@@ -1,4 +1,4 @@
-package gleb.dto;
+package gleb.dto.authentication;
 
 public class AuthenticationRequestDto {
 	private String userName;

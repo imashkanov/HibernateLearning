@@ -1,6 +1,6 @@
 package gleb.controllers;
 
-import gleb.dto.AuthenticationRequestDto;
+import gleb.dto.authentication.AuthenticationRequestDto;
 import gleb.entities.User;
 import gleb.security.jwt.JwtTokenProvider;
 import gleb.services.UserService;

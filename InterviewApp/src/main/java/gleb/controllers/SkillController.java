@@ -1,8 +1,8 @@
 package gleb.controllers;
 
-import gleb.dto.DeleteSkillByIdRequestDto;
-import gleb.dto.InsertSkillRequestDto;
-import gleb.dto.UpdateSkillRequestDto;
+import gleb.dto.skills.DeleteSkillByIdRequestDto;
+import gleb.dto.skills.InsertSkillRequestDto;
+import gleb.dto.skills.UpdateSkillRequestDto;
 import gleb.services.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

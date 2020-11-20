@@ -1,4 +1,4 @@
-package gleb.dto;
+package gleb.dto.skills;
 
 import gleb.entities.Skill;
 

@@ -1,4 +1,4 @@
-package gleb.dto;
+package gleb.dto.skills;
 
 public class SkillsCountResponseDto {
 	private long count;

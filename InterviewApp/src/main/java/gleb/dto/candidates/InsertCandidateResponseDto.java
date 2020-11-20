@@ -1,6 +1,6 @@
-package gleb.dto;
+package gleb.dto.candidates;
 
-public class DeleteSkillByIdRequestDto {
+public class InsertCandidateResponseDto {
 	private long id;
 
 	public long getId() {
