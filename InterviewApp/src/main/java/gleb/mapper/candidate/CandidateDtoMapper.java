@@ -1,4 +1,4 @@
-package gleb.utils.candidate;
+package gleb.mapper.candidate;
 
 import gleb.dto.candidates.InsertCandidateRequestDto;
 import gleb.entities.Candidate;
@@ -6,7 +6,7 @@ import gleb.entities.EntityStatus;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CandidateUtils {
+public class CandidateDtoMapper {
 	public Candidate fillCandidateFromDto(InsertCandidateRequestDto insertCandidateRequestDto) {
 		Candidate candidate = new Candidate();
 		candidate.setName(insertCandidateRequestDto.getName());

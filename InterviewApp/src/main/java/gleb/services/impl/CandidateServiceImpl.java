@@ -3,7 +3,7 @@ package gleb.services.impl;
 import gleb.dto.candidates.InsertCandidateRequestDto;
 import gleb.dto.candidates.InsertCandidateResponseDto;
 import gleb.entities.Candidate;
-import gleb.utils.candidate.CandidateUtils;
+import gleb.mapper.candidate.CandidateDtoMapper;
 import gleb.repositories.CandidateRepository;
 import gleb.services.CandidateService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class CandidateServiceImpl implements CandidateService {
 
 	private CandidateRepository candidateRepository;
-	private CandidateUtils candidateUtils;
+	private CandidateDtoMapper candidateDtoMapper;
 
 	@Autowired
 	public void setCandidateRepository(CandidateRepository candidateRepository) {
@@ -22,8 +22,8 @@ public class CandidateServiceImpl implements CandidateService {
 	}
 
 	@Autowired
-	public void setCandidateUtils(CandidateUtils candidateUtils) {
-		this.candidateUtils = candidateUtils;
+	public void setCandidateUtils(CandidateDtoMapper candidateDtoMapper) {
+		this.candidateDtoMapper = candidateDtoMapper;
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class CandidateServiceImpl implements CandidateService {
 	@Override
 	public ResponseEntity insertCandidate(InsertCandidateRequestDto insertCandidateRequestDto) {
 		InsertCandidateResponseDto outModel = new InsertCandidateResponseDto();
-		Candidate insertingCandidate = candidateUtils.fillCandidateFromDto(insertCandidateRequestDto);
+		Candidate insertingCandidate = candidateDtoMapper.fillCandidateFromDto(insertCandidateRequestDto);
 		try {
 			Candidate insertedCandidate = candidateRepository.save(insertingCandidate);
 			outModel.setId(insertedCandidate.getId());
